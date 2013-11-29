@@ -66,9 +66,13 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Maps leaderspace to nohlsearch
 nnoremap <leader><space> :noh<cr>
+
 " Maps tab to matching parenthesis/brackets etc
 nnoremap <tab> %
 vnoremap <tab> %
+
+" Sets README.md filetype as Markdown
+au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,README.md  set filetype=markdown
 
 " Reloads vimrc automatically
 augroup myvimrc
