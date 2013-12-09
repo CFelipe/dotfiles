@@ -9,9 +9,10 @@ Bundle 'bling/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-surround'
 
 syntax on
-filetype plugin on
+filetype plugin indent on
 
 " Fix tmux clipboard
 if $TMUX == ''
@@ -36,11 +37,15 @@ set shiftwidth=4
 set softtabstop=4
 set shiftround
 set backspace=indent,eol,start
+set autoindent
+set copyindent
 
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+set omnifunc=syntaxcomplete#Complete
 
 set background=dark
 let g:solarized_termtrans = 1
@@ -48,6 +53,8 @@ let g:solarized_termcolors = 16
 let g:solarized_visibility = "medium"
 let g:solarized_contrast = "medium"
 colorscheme solarized
+
+set noswapfile
 
 set guifont=Inconsolata\ For\ Powerline:h16
 
@@ -62,14 +69,12 @@ set foldlevel=99
 " Maps space to folds
 nnoremap <Space> za
 vnoremap <Space> za
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Maps leaderspace to nohlsearch
 nnoremap <leader><space> :noh<cr>
 
-" Maps tab to matching parenthesis/brackets etc
-nnoremap <tab> %
-vnoremap <tab> %
+" Maps leader t to tagbar
+nmap <leader>t :TagbarOpenAutoClose<cr>
 
 " Sets README.md filetype as Markdown
 au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,README.md  set filetype=markdown
