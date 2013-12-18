@@ -10,6 +10,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-surround'
+Bundle 'christoomey/vim-tmux-navigator'
 
 syntax on
 filetype plugin indent on
