@@ -48,7 +48,7 @@ set smartcase
 
 set omnifunc=syntaxcomplete#Complete
 
-set background=dark
+set background=light
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 16
 let g:solarized_visibility = "medium"
@@ -76,6 +76,11 @@ nnoremap <leader><space> :noh<cr>
 
 " Maps leader t to tagbar
 nmap <leader>t :TagbarOpenAutoClose<cr>
+
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+nmap <leader>w :call TrimWhiteSpace()<cr>
 
 " Sets README.md filetype as Markdown
 au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,README.md  set filetype=markdown
