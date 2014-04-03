@@ -11,6 +11,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-surround'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'tpope/vim-markdown'
 
 syntax on
 filetype plugin indent on
@@ -24,6 +25,9 @@ set encoding=utf-8
 set showcmd
 set relativenumber
 set undofile
+set undodir=~/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 " Show dots on trailing whitespace
 set list
@@ -81,9 +85,6 @@ function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
 nmap <leader>w :call TrimWhiteSpace()<cr>
-
-" Sets README.md filetype as Markdown
-au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,README.md  set filetype=markdown
 
 " Reloads vimrc automatically
 augroup myvimrc
