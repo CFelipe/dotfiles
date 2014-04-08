@@ -12,6 +12,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-surround'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-markdown'
+Bundle 'derekwyatt/vim-scala'
 
 syntax on
 filetype plugin indent on
@@ -24,6 +25,7 @@ endif
 set encoding=utf-8
 set showcmd
 set relativenumber
+set noswapfile
 set undofile
 set undodir=~/.vim/undo
 set undolevels=1000
@@ -59,8 +61,6 @@ let g:solarized_visibility = "medium"
 let g:solarized_contrast = "medium"
 colorscheme solarized
 
-set noswapfile
-
 set guifont=Inconsolata\ For\ Powerline:h16
 
 " Airline
@@ -85,6 +85,8 @@ function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
 nmap <leader>w :call TrimWhiteSpace()<cr>
+
+autocmd FileType scala setlocal shiftwidth=2 tabstop=2
 
 " Reloads vimrc automatically
 augroup myvimrc
