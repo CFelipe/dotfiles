@@ -71,6 +71,10 @@ let g:airline_powerline_fonts = 1
 set foldmethod=indent
 set foldlevel=99
 
+" zsh-like tab completion
+set wildmenu
+set wildmode=full
+
 " Maps space to folds
 nnoremap <Space> za
 vnoremap <Space> za
