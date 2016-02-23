@@ -1,18 +1,19 @@
-" Vundle stuff
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-surround'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'tpope/vim-markdown'
-Bundle 'derekwyatt/vim-scala'
+Plug 'gmarik/vundle'
+Plug 'tpope/vim-fugitive'
+Plug 'kien/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-markdown'
+Plug 'derekwyatt/vim-scala'
+
+call plug#end()
 
 syntax on
 filetype plugin indent on
@@ -54,13 +55,6 @@ set smartcase
 
 set omnifunc=syntaxcomplete#Complete
 
-set background=light
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 16
-let g:solarized_visibility = "medium"
-let g:solarized_contrast = "medium"
-colorscheme solarized
-
 set guifont=Inconsolata\ For\ Powerline:h16
 
 " Airline
@@ -97,3 +91,15 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | endif
 augroup END
+
+set background=light
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 16
+let g:solarized_visibility = "medium"
+let g:solarized_contrast = "medium"
+colorscheme solarized
+
+if has('persistent_undo')
+    set undofile
+    set undodir=$HOME/.vim/undo
+endif
