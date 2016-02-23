@@ -13,6 +13,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'godlygeek/tabular'
 
 syntax on
 filetype plugin indent on
@@ -61,11 +62,13 @@ let g:solarized_visibility = "medium"
 let g:solarized_contrast = "medium"
 colorscheme solarized
 
-set guifont=Inconsolata\ For\ Powerline:h16
+set guifont=Inconsolata:h16
 
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " Folding
 set foldmethod=indent
