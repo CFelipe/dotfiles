@@ -55,11 +55,18 @@ set smartcase
 
 set omnifunc=syntaxcomplete#Complete
 
-set guifont=Inconsolata\ For\ Powerline:h16
+set background=light
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 16
+let g:solarized_visibility = "medium"
+let g:solarized_contrast = "medium"
+colorscheme solarized
 
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " Folding
 set foldmethod=indent

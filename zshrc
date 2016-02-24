@@ -12,3 +12,7 @@ export EDITOR='vim'
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+echo "# todo"
+cat ~/Dropbox/org/todo.markdown
+echo ""
