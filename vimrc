@@ -1,20 +1,3 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'gmarik/vundle'
-Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
-Plug 'bling/vim-airline'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-surround'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-markdown'
-Plug 'derekwyatt/vim-scala'
-
-call plug#end()
-
 syntax on
 filetype plugin indent on
 
@@ -55,19 +38,6 @@ set smartcase
 
 set omnifunc=syntaxcomplete#Complete
 
-set background=light
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 16
-let g:solarized_visibility = "medium"
-let g:solarized_contrast = "medium"
-colorscheme solarized
-
-" Airline
-set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
 " Folding
 set foldmethod=indent
 set foldlevel=99
@@ -98,13 +68,6 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | endif
 augroup END
-
-set background=light
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 16
-let g:solarized_visibility = "medium"
-let g:solarized_contrast = "medium"
-colorscheme solarized
 
 if has('persistent_undo')
     set undofile
