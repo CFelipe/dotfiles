@@ -96,4 +96,7 @@
 (defun dotspacemacs/user-config ()
   (global-linum-mode t)
   (linum-relative-toggle)
+  (add-hook 'sql-mode-hook (lambda ()
+                             (sqlind-minor-mode 1)
+                             (sqlind-setup-style-right)))
   )
