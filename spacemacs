@@ -37,8 +37,7 @@
                                 (projects . 7))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Iosevka"
                                :size 13
@@ -91,12 +90,34 @@
    ))
 
 (defun dotspacemacs/user-init ()
+  (setq-default
+   js2-basic-offset 2
+   js-indent-level 2
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+  (setenv "LANG" "en_US.UTF-8")         ; for helm-project-do-ack
   )
+
+(defun enable-sqlind ()
+  (sqlind-minor-mode 1)
+  (sqlind-setup-style-right)
+  )
+
+(defun sql-add-newline-first (output)
+  "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'"
+  (concat "\n" output))
+
+(defun sqli-add-hooks ()
+  "Add hooks to `sql-interactive-mode-hook'."
+  (add-hook 'comint-preoutput-filter-functions
+            'sql-add-newline-first))
 
 (defun dotspacemacs/user-config ()
   (global-linum-mode t)
   (linum-relative-toggle)
-  (add-hook 'sql-mode-hook (lambda ()
-                             (sqlind-minor-mode 1)
-                             (sqlind-setup-style-right)))
+  (add-hook 'sql-mode-hook 'enable-sqlind)
+  (add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
   )
