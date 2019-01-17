@@ -7,17 +7,20 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
-     javascript
+     auto-completion
      clojure
-     sql
+     csv
+     emacs-lisp
+     helm
+     html
+     javascript
+     markdown
+     org
      python
      ruby
-     yaml
-     html
+     sql
      themes-megapack
-     helm
-     auto-completion
-     emacs-lisp
+     yaml
      )
    dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
@@ -97,7 +100,8 @@
    web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
+   web-mode-attr-indent-offset 2
+   default-input-method "latin-1-postfix")
   (setenv "LANG" "en_US.UTF-8")         ; for helm-project-do-ack
   )
 
