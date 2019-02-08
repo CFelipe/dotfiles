@@ -20,6 +20,7 @@
      ruby
      sql
      themes-megapack
+     vimscript
      yaml
      )
    dotspacemacs-additional-packages '()
@@ -124,4 +125,5 @@
   (linum-relative-toggle)
   (add-hook 'sql-mode-hook 'enable-sqlind)
   (add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
+  (add-hook 'org-mode-hook (lambda () (linum-relative-mode -1)))
   )
