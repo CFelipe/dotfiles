@@ -17,6 +17,7 @@
      markdown
      org
      python
+     racket
      ruby
      sql
      themes-megapack
