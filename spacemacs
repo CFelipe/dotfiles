@@ -7,6 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
+     autohotkey
      auto-completion
      clojure
      csv
@@ -44,8 +45,8 @@
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Iosevka"
-                               :size 13
+   dotspacemacs-default-font '("Triplicate T4c"
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -104,7 +105,7 @@
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
    default-input-method "latin-1-postfix")
-  (setenv "LANG" "en_US.UTF-8")         ; for helm-project-do-ack
+  (setenv "LANG" "en_US.UTF-8")
   )
 
 (defun enable-sqlind ()
