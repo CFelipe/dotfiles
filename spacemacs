@@ -12,6 +12,7 @@
      clojure
      csv
      emacs-lisp
+     git
      helm
      html
      javascript
@@ -122,6 +123,17 @@
   (add-hook 'comint-preoutput-filter-functions
             'sql-add-newline-first))
 
+(defun midje-indent ()
+  (define-clojure-indent
+    (fact 'defun)
+    (facts 'defun)
+    (fact-group 'defun)
+    (silent-fact 'defun)
+    (future-fact 'defun)
+    (tabular 'defun)
+    (against-background 'defun)
+    (provided 0)))
+
 (defun dotspacemacs/user-config ()
   (global-linum-mode t)
   (linum-relative-toggle)
@@ -130,4 +142,5 @@
   (add-hook 'org-mode-hook (lambda ()
                              (linum-relative-mode -1)
                              (spacemacs/toggle-line-numbers-on)))
+  (add-hook 'clojure-mode-hook 'midje-indent)
   )
