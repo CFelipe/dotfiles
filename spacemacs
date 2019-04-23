@@ -105,6 +105,7 @@
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
+   org-hidden-keywords '(title)
    default-input-method "latin-1-postfix")
   (setenv "LANG" "en_US.UTF-8")
   )
