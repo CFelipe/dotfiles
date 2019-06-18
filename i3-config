@@ -1,0 +1,116 @@
+set $mod Mod4
+
+font pango:Triplicate T4c 13
+
+floating_modifier $mod
+
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec --no-startup-id "rofi -matching fuzzy -show run -font \\"Triplicate T4c 12\\" -modi \\"run,window\\""
+
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+set $workspace1 "1: emacs"
+set $workspace2 "2: firefox"
+set $workspace3 "3: shell"
+set $workspace4 "4: slack"
+set $workspace5 "5: chrome"
+set $workspace6 "6: music"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+
+bindsym $mod+1 workspace number $workspace1
+bindsym $mod+2 workspace number $workspace2
+bindsym $mod+3 workspace number $workspace3
+bindsym $mod+4 workspace number $workspace4
+bindsym $mod+5 workspace number $workspace5
+bindsym $mod+6 workspace number $workspace6
+bindsym $mod+7 workspace number $workspace7
+bindsym $mod+8 workspace number $workspace8
+bindsym $mod+9 workspace number $workspace9
+
+bindsym $mod+Shift+1 move container to workspace number $workspace1
+bindsym $mod+Shift+2 move container to workspace number $workspace2
+bindsym $mod+Shift+3 move container to workspace number $workspace3
+bindsym $mod+Shift+4 move container to workspace number $workspace4
+bindsym $mod+Shift+5 move container to workspace number $workspace5
+bindsym $mod+Shift+6 move container to workspace number $workspace6
+bindsym $mod+Shift+7 move container to workspace number $workspace7
+bindsym $mod+Shift+8 move container to workspace number $workspace8
+bindsym $mod+Shift+9 move container to workspace number $workspace9
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioPlay        exec playerctl play-pause
+bindsym XF86AudioNext        exec playerctl next
+bindsym XF86AudioPrev        exec playerctl previous
+
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+exec --no-startup-id ~/Dev/scripts/touchtoclick 1
+exec --no-startup-id ~/Dev/scripts/multimonitor
+exec --no-startup-id setxkbmap -option caps:swapescape
+
+bar {
+        status_command i3status
+}
