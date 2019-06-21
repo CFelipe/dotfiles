@@ -44,7 +44,7 @@
                                 (projects . 7))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(spacemacs-light)
+   dotspacemacs-themes '(solarized-light spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Triplicate T4c"
                                :size 16
@@ -144,4 +144,8 @@
                              (linum-relative-mode -1)
                              (spacemacs/toggle-line-numbers-on)))
   (add-hook 'clojure-mode-hook 'midje-indent)
+  (custom-set-faces '(variable-pitch       ((t (:family "Triplicate T4c"))))
+                    '(org-block-begin-line ((t (:background nil :overline nil :underline nil))))
+                    '(org-block-end-line   ((t (:background nil :overline nil :underline nil))))
+                    '(org-block            ((t (:background "#fffcf2")))))
   )
