@@ -25,6 +25,9 @@ bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
+bindsym $mod+Control+k move workspace to output down
+bindsym $mod+Control+l move workspace to output up
+
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -45,6 +48,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 bindsym $mod+a focus parent
+
+bindsym $mod+p exec --no-startup-id "~/.config/i3/multimonitor-lock/lock -p -n"
 
 set $workspace1 "1: emacs"
 set $workspace2 "2: firefox"
@@ -109,7 +114,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 exec --no-startup-id ~/Dev/scripts/touchtoclick 1
 exec --no-startup-id ~/Dev/scripts/multimonitor
-exec --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id ~/Dev/scripts/i3-battery-popup/i3-battery-popup -n -L 20
+exec --no-startup-id setxkbmap -layout us,us -variant ,intl -option grp:alt_space_toggle
+exec --no-startup-id feh --bg-scale ~/Wallpapers/magr1.jpg
 
 bar {
         status_command i3status
