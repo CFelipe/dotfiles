@@ -57,9 +57,17 @@ set $workspace3 "3: shell"
 set $workspace4 "4: slack"
 set $workspace5 "5: chrome"
 set $workspace6 "6: music"
-set $workspace7 "7"
+set $workspace7 "7: pdf"
 set $workspace8 "8"
 set $workspace9 "9"
+
+workspace $workspace1 output HDMI1
+workspace $workspace2 output HDMI1
+workspace $workspace3 output HDMI1
+workspace $workspace4 output eDP1
+workspace $workspace5 output HDMI1
+workspace $workspace6 output eDP1
+workspace $workspace7 output HDMI1
 
 bindsym $mod+1 workspace number $workspace1
 bindsym $mod+2 workspace number $workspace2
