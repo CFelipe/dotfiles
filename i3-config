@@ -123,7 +123,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 exec --no-startup-id ~/Dev/scripts/touchtoclick 1
 exec --no-startup-id ~/Dev/scripts/multimonitor
 exec --no-startup-id ~/Dev/scripts/i3-battery-popup/i3-battery-popup -n -L 20
-exec --no-startup-id setxkbmap -layout us,us -variant ,intl -option grp:alt_space_toggle
+exec --no-startup-id setxkbmap -layout us,us -variant ,intl -option grp:alt_space_toggle,caps:swapescape
 exec --no-startup-id feh --bg-scale ~/Wallpapers/magr1.jpg
 
 bar {
