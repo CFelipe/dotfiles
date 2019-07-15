@@ -26,7 +26,7 @@
      vimscript
      yaml
      )
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(olivetti)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only))
