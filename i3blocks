@@ -2,6 +2,10 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=25
 markup=none
 
+[variant]
+interval=once
+signal=1
+
 [mediaplayer]
 label=♪
 instance=spotify

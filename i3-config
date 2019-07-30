@@ -113,6 +113,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym Mod1+ISO_Next_Group   exec pkill -RTMIN+1 i3blocks
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%; exec pkill -RTMIN+15 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%; exec pkill -RTMIN+15 i3blocks
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle;   exec pkill -RTMIN+15 i3blocks
