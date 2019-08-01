@@ -7,7 +7,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
-     autohotkey
+     asciidoc
      auto-completion
      clojure
      csv
@@ -16,6 +16,7 @@
      helm
      html
      javascript
+     lua
      markdown
      org
      python
@@ -106,6 +107,7 @@
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
    org-hidden-keywords '(title)
+   projectile-project-search-path '("~/Dev/" "~/Dev/nu/")
    default-input-method "latin-1-postfix")
   (setenv "LANG" "en_US.UTF-8")
   )
