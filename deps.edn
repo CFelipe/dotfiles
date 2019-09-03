@@ -1,0 +1,17 @@
+{:mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
+             "clojars" {:url "https://repo.clojars.org/"}}
+ :aliases
+ {:1.8    {:override-deps {org.clojure/clojure {:mvn/version "1.8.0"}}}
+  :1.9    {:override-deps {org.clojure/clojure {:mvn/version "1.9.0"}}}
+  :1.10   {:override-deps {org.clojure/clojure {:mvn/version "1.10.0"}}}
+  :1.10.1 {:override-deps {org.clojure/clojure {:mvn/version "1.10.1"}}}
+  :master {:override-deps {org.clojure/clojure {:mvn/version "1.11.0-master-SNAPSHOT"}}}
+
+  :cider     {:extra-deps {nrepl {:mvn/version "0.6.0"}
+                           cider/cider-nrepl {:mvn/version "0.22.0-beta2"}
+                           refactor-nrepl {:mvn/version "2.4.0"}}
+              :main-opts  ["-m" "nrepl.cmdline"]}
+
+  :deps {:extra-deps {org.clojure/tools.deps.alpha
+                      {:git/url "https://github.com/clojure/tools.deps.alpha"
+                       :sha     "148cab8f154711f8495bd632ebdc53a14dff7f09"}}}}}
