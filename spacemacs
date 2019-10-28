@@ -7,7 +7,6 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
-     asciidoc
      auto-completion
      clojure
      csv
@@ -20,8 +19,6 @@
      markdown
      org
      python
-     racket
-     ruby
      sql
      themes-megapack
      vimscript
