@@ -42,6 +42,11 @@
     xclip
   ];
 
+  fileSystems."/data" = {
+    device = "/dev/disk/by-label/DATA";
+    options = [ "uid=1001" "gid=100" "dmask=007" "fmask=117"];
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
