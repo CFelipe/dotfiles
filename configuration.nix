@@ -39,8 +39,11 @@
     deadbeef
     emacs
     firefox
+    git
+    scrot
+    rofi
     vim
-    wget 
+    wget
     xclip
   ];
 
@@ -87,7 +90,7 @@
         i3blocks
      ];
     };
-  }; 
+  };
 
  users.users.felipecortez = {
    isNormalUser = true;
