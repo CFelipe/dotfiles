@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
     ];
 
   environment.pathsToLink = [ "/libexec" ]; 
@@ -81,9 +82,17 @@
     };
   }; 
 
- users.users.felipe = {
+ users.users.felipecortez = {
    isNormalUser = true;
-   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+   extraGroups = [ "wheel" ];
+ };
+
+ home-manager.users.felipecortez = {
+   programs.git = {
+     enable = true;
+     userName  = "FelipeCortez";
+     userEmail = "felipecortezfi@gmail.com";
+   };
  };
 
   system.stateVersion = "19.09";
