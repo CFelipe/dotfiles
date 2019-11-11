@@ -28,23 +28,33 @@
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
+    #   consoleFont = "Lat2-Terminus16";
+    #   consoleKeyMap = "us";
   };
 
   time.timeZone = "America/Sao_Paulo";
 
   environment.systemPackages = with pkgs; [
+    alacritty
     arandr
-    deadbeef
+    autojump
+    beets
+    clojure
+    cmus
+    docker
     emacs
+    feh
     firefox
     git
-    scrot
+    kodi
+    pciutils
+    xorg.xf86videointel
     rofi
+    scrot
     vim
     wget
     xclip
+    zathura
   ];
 
   fileSystems."/data" = {
@@ -52,24 +62,18 @@
     options = [ "uid=1001" "gid=100" "dmask=007" "fmask=117"];
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  nixpkgs.config.allowUnfree = true;
 
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  services.xserver.videoDrivers = [ "intel" "nvidia" ];
+
+  hardware.bumblebee.enable = true;
+  hardware.bumblebee.connectDisplay = true;
+  hardware.bumblebee.driver = "nvidia";
 
   services.xserver = {
     enable = true;
@@ -81,6 +85,14 @@
       xterm.enable = false;
     };
 
+    config = ''
+Section "Device"
+    Identifier "intelgpu0"
+    Driver "intel"
+    Option "VirtualHeads" "2"
+EndSection
+    '';
+
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
@@ -88,22 +100,34 @@
         i3status
         i3lock
         i3blocks
-     ];
+      ];
     };
   };
 
- users.users.felipecortez = {
-   isNormalUser = true;
-   extraGroups = [ "wheel" ];
- };
+  virtualisation.docker.enable = true;
 
- home-manager.users.felipecortez = {
-   programs.git = {
-     enable = true;
-     userName  = "FelipeCortez";
-     userEmail = "felipecortezfi@gmail.com";
-   };
- };
+  programs.autojump.enable = true;
+  programs.zsh.enable = true;
+
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    plugins = [ "git" "vi-mode" "autojump" ];
+    theme = "robbyrussell";
+  };
+
+  users.users.felipecortez = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "docker" ];
+    shell = pkgs.zsh;
+  };
+
+  home-manager.users.felipecortez = {
+    programs.git = {
+      enable = true;
+      userName  = "FelipeCortez";
+      userEmail = "felipecortezfi@gmail.com";
+    };
+  };
 
   system.stateVersion = "19.09";
 
