@@ -25,7 +25,6 @@
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     #   consoleFont = "Lat2-Terminus16";
@@ -47,13 +46,15 @@
     firefox
     git
     kodi
+    pavucontrol
     pciutils
-    xorg.xf86videointel
     rofi
     scrot
     vim
     wget
     xclip
+    xorg.xbacklight
+    xorg.xf86videointel
     zathura
   ];
 
@@ -69,11 +70,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services.xserver.videoDrivers = [ "intel" "nvidia" ];
-
-  hardware.bumblebee.enable = true;
-  hardware.bumblebee.connectDisplay = true;
-  hardware.bumblebee.driver = "nvidia";
+  services.xserver.videoDrivers = [ "intel" ];
 
   services.xserver = {
     enable = true;
@@ -84,14 +81,6 @@
       default = "none";
       xterm.enable = false;
     };
-
-    config = ''
-Section "Device"
-    Identifier "intelgpu0"
-    Driver "intel"
-    Option "VirtualHeads" "2"
-EndSection
-    '';
 
     windowManager.i3 = {
       enable = true;
@@ -117,7 +106,7 @@ EndSection
 
   users.users.felipecortez = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "audio" ];
     shell = pkgs.zsh;
   };
 
