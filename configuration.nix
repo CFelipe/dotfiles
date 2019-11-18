@@ -34,6 +34,7 @@
   time.timeZone = "America/Sao_Paulo";
 
   environment.systemPackages = with pkgs; [
+    ag
     alacritty
     arandr
     autojump
@@ -41,13 +42,16 @@
     clojure
     cmus
     docker
+    docker-compose
     emacs
+    font-manager
     feh
     firefox
     git
     kodi
     pavucontrol
     pciutils
+    python3
     rofi
     scrot
     vim
