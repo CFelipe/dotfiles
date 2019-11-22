@@ -18,6 +18,8 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   networking.hostName = "bender";
   networking.networkmanager.enable = true;
 
@@ -49,6 +51,7 @@
     firefox
     git
     kodi
+    leiningen
     pavucontrol
     pciutils
     python3
@@ -57,6 +60,7 @@
     vim
     wget
     xclip
+    unzip
     xorg.xbacklight
     xorg.xf86videointel
     zathura
@@ -64,7 +68,8 @@
 
   fileSystems."/data" = {
     device = "/dev/disk/by-label/DATA";
-    options = [ "uid=1001" "gid=100" "dmask=007" "fmask=117"];
+    fsType = "ntfs";
+    options = [ "rw" "uid=1001"];
   };
 
   nixpkgs.config.allowUnfree = true;
