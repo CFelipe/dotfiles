@@ -5,25 +5,23 @@
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers
-   '(
-     auto-completion
-     clojure
-     csv
-     emacs-lisp
-     git
-     helm
-     html
-     javascript
-     lua
-     markdown
-     org
-     python
-     sql
-     themes-megapack
-     vimscript
-     yaml
-     )
+   dotspacemacs-configuration-layers '(auto-completion
+                                       clojure
+                                       csv
+                                       emacs-lisp
+                                       git
+                                       helm
+                                       html
+                                       javascript
+                                       lua
+                                       markdown
+                                       nixos
+                                       org
+                                       python
+                                       sql
+                                       themes-megapack
+                                       vimscript
+                                       yaml)
    dotspacemacs-additional-packages '(olivetti)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
@@ -91,8 +89,7 @@
    dotspacemacs-persistent-server nil
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
-   dotspacemacs-whitespace-cleanup nil
-   ))
+   dotspacemacs-whitespace-cleanup nil))
 
 (defun dotspacemacs/user-init ()
   (setq-default
@@ -104,24 +101,11 @@
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
    org-hidden-keywords '(title)
-   projectile-project-search-path '("~/Dev/" "~/Dev/nu/")
+   org-directory "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org"
+   org-agenda-files (directory-files-recursively "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org/" "\\.org$")
+   projectile-project-search-path '("~/dev/")
    default-input-method "latin-1-postfix")
-  (setenv "LANG" "en_US.UTF-8")
-  )
-
-(defun enable-sqlind ()
-  (sqlind-minor-mode 1)
-  (sqlind-setup-style-right)
-  )
-
-(defun sql-add-newline-first (output)
-  "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'"
-  (concat "\n" output))
-
-(defun sqli-add-hooks ()
-  "Add hooks to `sql-interactive-mode-hook'."
-  (add-hook 'comint-preoutput-filter-functions
-            'sql-add-newline-first))
+  (setenv "LANG" "en_US.UTF-8"))
 
 (defun midje-indent ()
   (define-clojure-indent
@@ -137,8 +121,6 @@
 (defun dotspacemacs/user-config ()
   (global-linum-mode t)
   (linum-relative-toggle)
-  (add-hook 'sql-mode-hook 'enable-sqlind)
-  (add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
   (add-hook 'org-mode-hook (lambda ()
                              (spacemacs/toggle-line-numbers-off)
                              (olivetti-mode 1)))
@@ -146,5 +128,4 @@
   (custom-set-faces '(variable-pitch       ((t (:family "Triplicate T4c"))))
                     '(org-block-begin-line ((t (:background nil :overline nil :underline nil))))
                     '(org-block-end-line   ((t (:background nil :overline nil :underline nil))))
-                    '(org-block            ((t (:background "#fffcf2")))))
-  )
+                    '(org-block            ((t (:background "#fffcf2"))))))
