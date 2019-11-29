@@ -43,6 +43,7 @@
     beets
     clojure
     cmus
+    cmusfm
     docker
     docker-compose
     emacs
@@ -57,6 +58,8 @@
     python3
     rofi
     scrot
+    soulseekqt
+    qt5.qtbase
     vim
     wget
     xclip
@@ -64,12 +67,13 @@
     xorg.xbacklight
     xorg.xf86videointel
     zathura
+    zip
   ];
 
   fileSystems."/data" = {
     device = "/dev/disk/by-label/DATA";
     fsType = "ntfs";
-    options = [ "rw" "uid=1001"];
+    options = [ "rw" "uid=1001" "gid=100"];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -77,7 +81,14 @@
   services.openssh.enable = true;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   services.xserver.videoDrivers = [ "intel" ];
 
