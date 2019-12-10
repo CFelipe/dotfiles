@@ -41,29 +41,31 @@
     arandr
     autojump
     beets
+    calibre
     clojure
     cmus
     cmusfm
     docker
     docker-compose
     emacs
-    font-manager
     feh
     firefox
+    font-manager
     git
     kodi
     leiningen
+    pandoc
     pavucontrol
     pciutils
     python3
+    qt5.qtbase
     rofi
     scrot
     soulseekqt
-    qt5.qtbase
+    unzip
     vim
     wget
     xclip
-    unzip
     xorg.xbacklight
     xorg.xf86videointel
     zathura
