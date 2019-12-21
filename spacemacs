@@ -7,20 +7,16 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(auto-completion
                                        clojure
-                                       csv
                                        emacs-lisp
                                        git
                                        helm
                                        html
                                        javascript
-                                       lua
                                        markdown
                                        nixos
                                        org
                                        python
-                                       sql
                                        themes-megapack
-                                       vimscript
                                        yaml)
    dotspacemacs-additional-packages '(olivetti)
    dotspacemacs-frozen-packages '()
@@ -43,7 +39,7 @@
    dotspacemacs-themes '(solarized-light spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Triplicate T4c"
-                               :size 16
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -74,12 +70,13 @@
    dotspacemacs-loading-progress-bar t
    dotspacemacs-fullscreen-at-startup nil
    dotspacemacs-fullscreen-use-non-native nil
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    dotspacemacs-active-transparency 90
    dotspacemacs-inactive-transparency 90
    dotspacemacs-show-transient-state-title t
    dotspacemacs-show-transient-state-color-guide t
    dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-theme 'spacemacs
    dotspacemacs-smooth-scrolling t
    dotspacemacs-line-numbers 'relative
    dotspacemacs-folding-method 'evil
@@ -100,12 +97,12 @@
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
+   helm-completion-style 'emacs
+   completion-styles '(helm-flex)
    org-hidden-keywords '(title)
-   org-directory "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org"
-   org-agenda-files (directory-files-recursively "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org/" "\\.org$")
-   projectile-project-search-path '("~/dev/")
-   default-input-method "latin-1-postfix")
-  (setenv "LANG" "en_US.UTF-8"))
+   ;; org-directory "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org"
+   ;; org-agenda-files (directory-files-recursively "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org/" "\\.org$")
+   projectile-project-search-path '("~/Dev/" "~/Dev/nu")))
 
 (defun midje-indent ()
   (define-clojure-indent
@@ -119,8 +116,6 @@
     (provided 0)))
 
 (defun dotspacemacs/user-config ()
-  (global-linum-mode t)
-  (linum-relative-toggle)
   (add-hook 'org-mode-hook (lambda ()
                              (spacemacs/toggle-line-numbers-off)
                              (olivetti-mode 1)))
