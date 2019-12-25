@@ -100,9 +100,11 @@
    helm-completion-style 'emacs
    completion-styles '(helm-flex)
    org-hidden-keywords '(title)
+   custom-file "~/.emacs-custom.el"
    ;; org-directory "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org"
    ;; org-agenda-files (directory-files-recursively "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org/" "\\.org$")
    projectile-project-search-path '("~/Dev/" "~/Dev/nu")))
+  (load custom-file))
 
 (defun midje-indent ()
   (define-clojure-indent
