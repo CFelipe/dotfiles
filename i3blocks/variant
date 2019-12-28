@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-case "$(xset -q | grep LED | awk '{ print $10 }')" in
+case "$( xset -q | grep LED | awk '{ print $10 }')" in
   "00000000") echo "Engl" && echo "Engl" && echo "#FFFFFF";;
   "00001000") echo "Intl" && echo "Intl" && echo "#FF00FF";;
   *) KBD="????" ;;
