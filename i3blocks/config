@@ -1,6 +1,10 @@
-command=/usr/share/i3blocks/$BLOCK_NAME
+command=~/.config/i3blocks/$BLOCK_NAME
 separator_block_width=25
 markup=none
+
+[time]
+command=iwgetid -r
+interval=5
 
 [variant]
 interval=once
@@ -23,4 +27,7 @@ interval=30
 
 [time]
 command=date '+%Y-%m-%d %H:%M:%S'
+interval=1
+
+[countdown]
 interval=1

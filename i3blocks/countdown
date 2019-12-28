@@ -1,0 +1,8 @@
+#!/bin/bash
+
+now_secs=$(date -d "now" +%s)
+future_secs=$(cat ~/.future.txt)
+
+if (( $future_secs > $now_secs )); then
+    echo $(date --date @$(expr "$future_secs" - "$now_secs") +"%M:%S")
+fi
