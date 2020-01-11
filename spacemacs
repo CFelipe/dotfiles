@@ -101,9 +101,7 @@
    completion-styles '(helm-flex)
    org-hidden-keywords '(title)
    custom-file "~/.emacs-custom.el"
-   ;; org-directory "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org"
-   ;; org-agenda-files (directory-files-recursively "/ssh:felipecortez@felipecortez.net:/home/felipecortez/org/" "\\.org$")
-   projectile-project-search-path '("~/Dev/" "~/Dev/nu")))
+   projectile-project-search-path '("~/Dev/"))
   (load custom-file))
 
 (defun midje-indent ()
@@ -126,3 +124,11 @@
                     '(org-block-begin-line ((t (:background nil :overline nil :underline nil))))
                     '(org-block-end-line   ((t (:background nil :overline nil :underline nil))))
                     '(org-block            ((t (:background "#fffcf2"))))))
+
+(defun orgify ()
+  (interactive)
+  (setq-default
+   org-directory "/home/felipecortez/org/"
+   org-agenda-files (directory-files-recursively "/home/felipecortez/org/" "\\.org$")
+   org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9))
+   org-refile-use-outline-path t))
