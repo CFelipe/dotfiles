@@ -100,6 +100,7 @@
    helm-completion-style 'emacs
    completion-styles '(helm-flex)
    org-hidden-keywords '(title)
+   org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
    custom-file "~/.emacs-custom.el"
    projectile-project-search-path '("~/Dev/"))
   (load custom-file))
