@@ -38,7 +38,6 @@
   environment.systemPackages = with pkgs; [
     ag
     alacritty
-    arandr
     autojump
     beets
     calibre
