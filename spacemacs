@@ -133,3 +133,20 @@
    org-agenda-files (directory-files-recursively "/home/felipecortez/org/" "\\.org$")
    org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9))
    org-refile-use-outline-path t))
+
+(defadvice cider-last-sexp (around evil activate)
+  "In normal-state or motion-state, last sexp ends at point."
+  (if (or (evil-normal-state-p) (evil-motion-state-p))
+      (save-excursion (unless (or (eobp) (eolp)) (forward-char))
+                      ad-do-it)
+    ad-do-it))
+
+;; fix green highlighting when eval-ing last-sexp
+;; original cider-eval-sexp-fu (comes with the clojure layer)
+;;   https://github.com/clojure-emacs/cider-eval-sexp-fu/blob/5687e7b33e17f2be40b036dac82da4a5bc6705fb/cider-eval-sexp-fu.el#L38
+
+(defadvice cider-esf--bounds-of-last-sexp (around evil activate)
+  "In normal-state or motion-state, last sexp ends at point."
+  (if (or (evil-normal-state-p) (evil-motion-state-p))
+      (cons (save-excursion (unless (or (eobp) (eolp)) (forward-char)) ad-do-it))
+    ad-do-it))
