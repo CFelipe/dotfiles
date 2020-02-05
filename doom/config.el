@@ -33,3 +33,14 @@
      prettify
      text-objects
      slurp/barf-cp)))
+
+(use-package! olivetti :hook (org-mode . olivetti-mode))
+
+(defun orgify ()
+  "Recursively index org files"
+  (interactive)
+  (setq-default
+   org-directory "/home/felipecortez/org/"
+   org-agenda-files (directory-files-recursively "/home/felipecortez/org/" "\\.org$")
+   org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9))
+   org-refile-use-outline-path t))
