@@ -11,6 +11,8 @@
 
 (setq display-line-numbers-type 'relative)
 
+(setq evil-move-beyond-eol t)
+
 (use-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
          (emacs-lisp-mode . lispyville-mode)
@@ -27,6 +29,7 @@
      (additional-wrap normal insert)
      (atom-movement t)
      c-w
+     c-u
      (commentary normal visual)
      (escape insert emacs)
      (operators normal)
