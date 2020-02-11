@@ -11,6 +11,8 @@
 
 (setq display-line-numbers-type 'relative)
 
+(setq projectile-project-search-path '("~/Dev/" "~/Dev/nu"))
+
 (setq evil-move-beyond-eol t)
 
 (use-package! lispyville
@@ -36,6 +38,13 @@
      prettify
      text-objects
      slurp/barf-cp)))
+
+(add-hook! clojure-mode
+  (require #'flycheck-clj-kondo)
+  (map!
+   (:map clojure-mode-map
+     (:localleader
+       ("a" #'clojure-align)))))
 
 (use-package! olivetti :hook (org-mode . olivetti-mode))
 

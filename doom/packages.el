@@ -53,3 +53,4 @@
 
 (package! lispyville)
 (package! olivetti)
+(package! flycheck-clj-kondo)
