@@ -56,3 +56,12 @@
    org-agenda-files (directory-files-recursively "/home/felipecortez/org/" "\\.org$")
    org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9))
    org-refile-use-outline-path t))
+
+(map!
+ (:after ivy
+   :map ivy-minibuffer-map
+   "M-j" #'ivy-yank-symbol)
+
+ (:after clojure-mode
+   (:map clojure-mode-map
+     :nv "gD" #'cider-xref-fn-refs)))
