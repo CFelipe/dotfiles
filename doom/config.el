@@ -15,6 +15,20 @@
 
 (setq evil-move-beyond-eol t)
 
+(use-package! clojure-mode
+  :config
+  (define-clojure-indent
+    (fact 1)
+    (facts 1)
+    (flow 1)
+    (fnk 1)
+    (provided 1)
+    (providing 1)
+    (verifying 1)
+    (clojure.test.check/quick-check 2)
+    (clojure.test.check.properties/for-all 2)
+    (common-datomic.test-helpers/let-entities 2)))
+
 (use-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
          (emacs-lisp-mode . lispyville-mode)
