@@ -11,7 +11,7 @@
 
 (setq display-line-numbers-type 'relative)
 
-(setq projectile-project-search-path '("~/Dev/" "~/Dev/nu"))
+(setq projectile-project-search-path '("~/Dev/"))
 
 (setq evil-move-beyond-eol t)
 
@@ -23,6 +23,10 @@
          (hy-mode . lispyville-mode)
          (lfe-mode . lispyville-mode)
          (clojure-mode . lispyville-mode))
+
+  :bind (:map lispyville-mode-map
+          ("M-L" . lispyville-beginning-of-next-defun))
+
   :config
   (lispyville-set-key-theme
    `(additional
@@ -41,6 +45,7 @@
 
 (add-hook! clojure-mode
   (require #'flycheck-clj-kondo)
+  (setq clojure-align-forms-automatically t)
   (map!
    (:map clojure-mode-map
      (:localleader
