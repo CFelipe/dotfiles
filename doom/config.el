@@ -39,7 +39,6 @@
      (commentary normal visual)
      (escape insert emacs)
      (operators normal)
-     prettify
      text-objects
      slurp/barf-cp)))
 
