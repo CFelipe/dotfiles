@@ -12,7 +12,7 @@
  org-refile-use-outline-path 'file
  org-outline-path-complete-in-steps nil
  org-refile-allow-creating-parent-nodes 'confirm
- )
+ org-tags-column 0)
 
 (set-frame-font "Triplicate T4c 11" nil t)
 
