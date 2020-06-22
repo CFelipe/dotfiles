@@ -48,7 +48,7 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(windmove-default-keybindings)
+(global-set-key (kbd "C-x o") 'ace-window)
 
 (setq-default
  backup-by-copying t                    ; don't clobber symlinks
