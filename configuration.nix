@@ -1,105 +1,57 @@
 { config, pkgs, ... }:
 
+
+let d = builtins.fetchGit { url = "https://github.com/FelipeCortez/dotfiles"; };
+in
 {
   imports =
     [
       ./hardware-configuration.nix
-      "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
+      <home-manager/nixos>
     ];
 
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+   (self: super: {
+     neovim = super.neovim.override {
+       viAlias = true;
+       vimAlias = true;
+     };
+   })
+   ];
+
   environment.pathsToLink = [ "/libexec" ];
+  environment.sessionVariables.SHELL = "zsh";
+  environment.sessionVariables.TERMINAL = [ "alacritty" ];
 
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
-
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  networking.hostName = "bender";
+  networking.hostName = "beep";
   networking.networkmanager.enable = true;
-
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    #   consoleFont = "Lat2-Terminus16";
-    #   consoleKeyMap = "us";
-  };
 
   time.timeZone = "America/Sao_Paulo";
 
-  environment.systemPackages = with pkgs; [
-    ag
-    alacritty
-    autojump
-    beets
-    calibre
-    clojure
-    cmus
-    cmusfm
-    docker
-    docker-compose
-    emacs
-    feh
-    firefox
-    font-manager
-    git
-    kodi
-    leiningen
-    pandoc
-    pavucontrol
-    pciutils
-    python3
-    qt5.qtbase
-    rofi
-    scrot
-    soulseekqt
-    unzip
-    vim
-    wget
-    xclip
-    xorg.xbacklight
-    xorg.xf86videointel
-    zathura
-    zip
-  ];
+  networking.useDHCP = false;
+  networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  fileSystems."/data" = {
-    device = "/dev/disk/by-label/DATA";
-    fsType = "ntfs";
-    options = [ "rw" "uid=1001" "gid=100"];
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  services.openssh.enable = true;
-
-  sound.enable = true;
-
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-  };
-
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-
-  services.xserver.videoDrivers = [ "intel" ];
+  i18n.defaultLocale = "en_US.UTF-8";
+  console.font = "latarcyrheb-sun32";
 
   services.xserver = {
     enable = true;
     layout = "us";
     libinput.enable = true;
 
+    monitorSection = ''
+      DisplaySize 609 342
+    '';
+
+    displayManager = {
+      defaultSession = "none+i3";
+    };
+
     desktopManager = {
-      default = "none";
       xterm.enable = false;
     };
 
@@ -114,31 +66,110 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  # Configure keymap in X11
+  # services.xserver.layout = "us";
+  # services.xserver.xkbOptions = "eurosign:e";
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   programs.autojump.enable = true;
   programs.zsh.enable = true;
 
-  programs.zsh.ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "vi-mode" "autojump" ];
-    theme = "robbyrussell";
-  };
-
   users.users.felipecortez = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "audio" ];
-    shell = pkgs.zsh;
   };
 
-  home-manager.users.felipecortez = {
+  home-manager.users.felipecortez = { pkgs, ... }: {
     programs.git = {
       enable = true;
       userName  = "FelipeCortez";
       userEmail = "felipecortezfi@gmail.com";
     };
+
+    home.sessionVariables = {
+      TERMINAL = "alacritty";
+      SHELL = "zsh";
+    };
+
+    # home.file.".emacs.d/init.el".source = "${d.outPath}/init.el";
+
+    programs.zsh = {
+      enable = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "vi-mode" "autojump" ];
+        theme = "robbyrussell";
+      };
+    };
   };
 
-  system.stateVersion = "19.09";
+  virtualisation.docker.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    ag
+    awscli
+    arandr
+    alacritty
+    autojump
+    clojure
+    docker
+    emacs
+    feh
+    firefox
+    font-manager
+    git
+    imagemagick
+    leiningen
+    gnumake
+    neovim
+    nodejs
+    nodePackages.typescript
+    pavucontrol
+    python3
+    rofi
+    ripgrep
+    scrot
+    slack
+    spotify
+    unzip
+    vim
+    wget
+    xclip
+    xorg.xbacklight
+    zathura
+    zip
+
+    pulumi-bin
+    minikube
+    kubectl
+  ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "20.09"; # Did you read the comment?
 }
