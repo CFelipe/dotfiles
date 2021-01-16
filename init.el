@@ -7,8 +7,6 @@
 
 (set-frame-font "Triplicate T4c 16" nil t)
 
-(load-theme 'doom-solarized-light t)
-
 (add-to-list 'package-archives
              '("MELPA Stable" . "https://stable.melpa.org/packages/"))
 
@@ -23,6 +21,16 @@
         org-tags-column 0
         org-log-done 'time
         org-hide-leading-stars 't))
+
+(use-package doom-themes
+	     :ensure t
+	     :config (load-theme 'doom-solarized-light t))
+
+(use-package csv-mode
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
 
 (use-package counsel
   :ensure t
@@ -52,7 +60,7 @@
   :bind-keymap (("C-c p" . projectile-command-map))
   :init
   (setq projectile-completion-system 'ivy
-        projectile-project-search-path '("~/Dev/" "~/Dev/nu/")))
+        projectile-project-search-path '("~/dev/")))
 
 (projectile-mode 1)
 
@@ -138,21 +146,16 @@
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
 
-(use-package olivetti)
 
-(use-package org-roam
-  :ensure t
-  :hook
-  (after-init . org-roam-mode)
-  :custom
-  (org-roam-directory "~/org/interlinked/")
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph-show))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+
+(use-package olivetti
+  :ensure t)
+
+(use-package ace-window
+  :ensure t)
+
+(use-package smex
+  :ensure t)
 
 (setq-default js-indent-level 2)
 (setq-default web-mode-markup-indent-offset 2)
@@ -163,13 +166,14 @@
 (setq-default whitespace-style '(face spaces tabs trailing tab-mark))
 
 (setq-default indent-tabs-mode nil)
+(setq-default require-final-newline t)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (add-hook 'org-mode-hook #'olivetti-mode)
-(add-hook 'org-mode-hook #'org-variable-pitch-minor-mode)
+;; (add-hook 'org-mode-hook #'org-variable-pitch-minor-mode)
 (add-hook 'markdown-mode-hook #'olivetti-mode)
 
 (global-set-key (kbd "C-x o") 'ace-window)
@@ -187,7 +191,7 @@
  kept-old-versions 2
  version-control t)
 
-(load "~/.femacs.d/org-variable-pitch.el")
+(load "~/.emacs.d/felisp.el")
 
 (add-to-list 'load-path "~/.femacs.d/requires")
 
@@ -197,16 +201,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("ecba61c2239fbef776a72b65295b88e5534e458dfe3e6d7d9f9cb353448a569e" "b54826e5d9978d59f9e0a169bbd4739dd927eead3ef65f56786621b53c031a7c" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default)))
+   '("ecba61c2239fbef776a72b65295b88e5534e458dfe3e6d7d9f9cb353448a569e" "b54826e5d9978d59f9e0a169bbd4739dd927eead3ef65f56786621b53c031a7c" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "f0dc4ddca147f3c7b1c7397141b888562a48d9888f1595d69572db73be99a024" default))
  '(org-roam-directory "~/org/interlinked/")
  '(package-selected-packages
-   (quote
-    (smartparens org-roam rjsx-mode smex web-mode js2-mode forge doom-themes default-text-scale flycheck-clj-kondo flycheck ledger-mode ripgrep which-key god-mode magit lispy evil)))
+   '(yaml-mode csv-mode ace-window smartparens org-roam rjsx-mode smex web-mode js2-mode forge doom-themes default-text-scale flycheck-clj-kondo flycheck ledger-mode ripgrep which-key god-mode magit lispy evil))
  '(safe-local-variable-values
-   (quote
-    ((cider-figwheel-main-default-options . "dev")
-     (cider-default-cljs-repl . figwheel-main)))))
+   '((cider-figwheel-main-default-options . "dev")
+     (cider-default-cljs-repl . figwheel-main))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
