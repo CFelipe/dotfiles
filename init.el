@@ -5,10 +5,15 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
-(set-frame-font "Triplicate T4c 16" nil t)
+(when (find-font (font-spec :name "Triplicate T4C 16"))
+  (set-frame-font "Triplicate T4c 16" nil t))
 
 (add-to-list 'package-archives
              '("MELPA Stable" . "https://stable.melpa.org/packages/"))
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (use-package org
   :init
